@@ -14,3 +14,29 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebas
         messagingSenderId: "794888143408",
         appId: "1:794888143408:web:d4c9de813cc43b7e8063f5"
       };
+        const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+      enableIndexedDbPersistence(db).catch((err) => {
+        console.log("Persistence error:", err);
+      });
+      async function addTaskToFirestore(title) {
+        const trimmed = (title || "").trim();
+        if (!trimmed) return;
+
+        try {
+          await addDoc(collection(db, "tasks"), {
+            title: trimmed,
+            done: false,
+            createdAt: Date.now()
+          });
+          console.log("Task saved to Firestore (with offline persistence).");
+        } catch (err) {
+          console.log("Error saving task:", err);
+        }
+      }
+
+      window.addTaskToFirestore = addTaskToFirestore;
+  
+
+   
+      const todoInput = document.querySelector("input[name='taskInput']");

@@ -40,3 +40,11 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebas
 
    
       const todoInput = document.querySelector("input[name='taskInput']");
+        const errorDiv = document.querySelector(".error-message");
+      const addTaskButton = document.querySelector(".add-task-button");
+      const taskList = document.querySelector(".task-list");
+      const filterAllButton = document.querySelector(".filter-all");
+      const filterDoneButton = document.querySelector(".filter-done");
+      const filterTodoButton = document.querySelector(".filter-todo");
+      const deleteDoneTasksButton = document.querySelector(".delete-done-tasks-button");
+      const deleteAllTasksButton = document.querySelector(".delete-all-tasks-button");
